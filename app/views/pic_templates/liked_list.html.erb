@@ -1,0 +1,42 @@
+<h1>Popular Photos</h1>
+
+<table>
+  <tr>
+    <th>Image</th>
+    <th>Caption</th>
+    <th>Owner</th>
+    <th>Posted</th>
+    <th>Likes</th>
+    <th></th>
+  </tr>
+
+  <% @photos.each do |pic| %>
+  <tr>
+    <td>
+      <img src="<%= pic.image %>">
+    </td>
+
+    <td>
+      <%= pic.caption %>
+    </td>
+
+    <td>
+      <%= pic.owner.username %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(pic.created_at) %> ago
+    </td>
+
+    <td>
+      <%= pluralize(pic.likes_count, "like") %>
+    </td>
+
+    <td>
+      <a href="/photos/<%= pic.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

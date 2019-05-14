@@ -1,0 +1,52 @@
+<h1>Photo Details</h1>
+
+<dl>
+  <dt>Image</dt>
+  <dd>
+    <img src="<%= @pic.image %>">
+  </dd>
+
+  <dt>Caption</dt>
+  <dd>
+    <%= @pic.caption %>
+  </dd>
+
+  <dt>Owner</dt>
+  <dd>
+    <%= @pic.owner.username %>
+  </dd>
+
+  <dt>Posted</dt>
+  <dd>
+    <%= time_ago_in_words(@pic.created_at) %> ago
+  </dd>
+
+  <dt>Fans</dt>
+  <dd>
+    <%= @pic.fans.pluck(:username).to_sentence %>
+  </dd>
+</dl>
+
+<table>
+  <tr>
+    <th>Commenter</th>
+    <th>Comment</th>
+    <th>Posted</th>
+  </tr>
+
+  <% @pic.comments.order({ :created_at => :asc }).each do |comment| %>
+  <tr>
+    <td>
+      <%= comment.author.username %>
+    </td>
+
+    <td>
+      <%= comment.body %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(comment.created_at) %> ago
+    </td>
+  </tr>
+  <% end %>
+</table>
