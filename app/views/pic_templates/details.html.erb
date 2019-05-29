@@ -25,6 +25,33 @@
   <dd>
     <%= @pic.fans.pluck(:username).to_sentence %>
   </dd>
+  
+  <dt>Add a fan</dt>
+  
+  <dd>
+    <form action ="/create_like_record">
+      <input type = "hidden" name = "photo_id" value ="<%= @pic.id %>">
+      
+      <label for ="user_dropdown">Person</label>
+      <select id = "user_dropdown" name = "pic_fan_id">
+        <%User.all.order({:username => :asc}).each do |a_fan| %>
+          <option value="<%= a_fan.id%>">
+            <%= a_fan.username %>
+          </option>
+        <% end %>
+      </select>
+      
+      <button>Add fan</button>
+    </form>
+  </dd>
+  
+  <dt>Danger Zone</dt>
+    <dd>
+      <a href="/delete_photo/<%= @pic.id %>">
+          Delete this photo
+      </a>
+    </dd>
+  
 </dl>
 
 <table>
@@ -50,3 +77,4 @@
   </tr>
   <% end %>
 </table>
+

@@ -1,0 +1,11 @@
+<h1>Update photo <%= @editpic.id %> </h1>
+
+<form action = "/update_photo_record/<%= @editpic.id.to_s%>">
+    <label for= "image_input">Image URL</label>
+    <input value="<%= @editpic.image %>" id ="image_input" name="pic_image" type ="text" placeholder = "Enter a URL...">
+    
+    <label for="caption_box">Caption</label>
+    <textarea id = "caption_box" name="pic_caption"><%= @editpic.caption %></textarea>
+    
+    <button>Update photo</button>
+</form>
